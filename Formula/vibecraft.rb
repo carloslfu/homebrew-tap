@@ -6,21 +6,21 @@
 # This is the SOURCE template. The release pipeline (see
 # .github/workflows/release.yml job `homebrew`) renders this with the
 # concrete version + SHA-256 values, then pushes it to the public tap
-# repo at github.com/vibecraft/homebrew-tap as vibecraft.rb.
+# repo at github.com/carloslfu/homebrew-tap as Formula/vibecraft.rb.
 #
 # Users install with:
 #
-#   brew install vibecraft/tap/vibecraft
+#   brew install carloslfu/tap/vibecraft
 #
 # Substitution variables (filled by the release job):
 #   v0.63.0            v0.X.Y
-#   https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-darwin-arm64   https://github.com/.../vibecraft-darwin-arm64
+#   https://www.vibecraft.so/install/vibecraft-darwin-arm64   https://www.vibecraft.so/install/vibecraft-darwin-arm64
 #   efd314b44b5a7ed3f521131a9c0e33fdde94be03620cf3d70204ad4ccd05f3fa   sha256 hex
-#   https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-darwin-amd64   ...
+#   https://www.vibecraft.so/install/vibecraft-darwin-amd64   ...
 #   0e77e55eea809410bdadf39026ed7281d12bfc84d95776285d3df9b2b41d4044   ...
-#   https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-linux-arm64    ...
+#   https://www.vibecraft.so/install/vibecraft-linux-arm64    ...
 #   26179f05285a4a69143339c2395b0f98a5bd2c1c395e72b9a981a8e1cc99e23e    ...
-#   https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-linux-amd64    ...
+#   https://www.vibecraft.so/install/vibecraft-linux-amd64    ...
 #   9500b9ce81ceac16af300191f83c9e1607e3fd92f123fcf4a7aec115c43a0953    ...
 
 class Vibecraft < Formula
@@ -31,22 +31,22 @@ class Vibecraft < Formula
 
   on_macos do
     on_arm do
-      url "https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-darwin-arm64"
+      url "https://www.vibecraft.so/install/vibecraft-darwin-arm64"
       sha256 "efd314b44b5a7ed3f521131a9c0e33fdde94be03620cf3d70204ad4ccd05f3fa"
     end
     on_intel do
-      url "https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-darwin-amd64"
+      url "https://www.vibecraft.so/install/vibecraft-darwin-amd64"
       sha256 "0e77e55eea809410bdadf39026ed7281d12bfc84d95776285d3df9b2b41d4044"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-linux-arm64"
+      url "https://www.vibecraft.so/install/vibecraft-linux-arm64"
       sha256 "26179f05285a4a69143339c2395b0f98a5bd2c1c395e72b9a981a8e1cc99e23e"
     end
     on_intel do
-      url "https://github.com/carloslfu/vibecraft-so/releases/download/v0.63.0/vibecraft-linux-amd64"
+      url "https://www.vibecraft.so/install/vibecraft-linux-amd64"
       sha256 "9500b9ce81ceac16af300191f83c9e1607e3fd92f123fcf4a7aec115c43a0953"
     end
   end
