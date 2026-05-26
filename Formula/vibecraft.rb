@@ -13,41 +13,41 @@
 #   brew install carloslfu/tap/vibecraft
 #
 # Substitution variables (filled by the release job):
-#   v0.70.25            v0.X.Y
+#   v0.70.26            v0.X.Y
 #   https://www.vibecraft.so/install/vibecraft-darwin-arm64   https://www.vibecraft.so/install/vibecraft-darwin-arm64
-#   8ef647ba90f317f44260b79217cc132ad897df6a42eac8a9af1305815a8dc860   sha256 hex
+#   364728a2cc06113b0ed877888acd2f9c5a2ee00818b16551246e7d7a6c58c096   sha256 hex
 #   https://www.vibecraft.so/install/vibecraft-darwin-amd64   ...
-#   0e6a9bd68994ba0ffc0df8b1e042ea536d1ba27c1b0b03d79eb479ed78dbb7fe   ...
+#   032382f69f2c51a3d1c3d468cd2bef641726e7e1793ff5c26be4fb79e2e45eca   ...
 #   https://www.vibecraft.so/install/vibecraft-linux-arm64    ...
-#   e6fc37c2da3d000967ef11b08e60a748b2155987d1ef9f9604adba418dcbd6f0    ...
+#   b98f1497ce36511903054a78f0022a0b3edb9c8e381ddec40b363934a3166cb2    ...
 #   https://www.vibecraft.so/install/vibecraft-linux-amd64    ...
-#   34565f693d1cc5ff06f2ed3dcb49974e88ac890bae135471f0662c61d90879ba    ...
+#   b46764a5cfc88a1b5fcc35a66f4ab5e4631b4086e2402179c4c84583dc7e1e9d    ...
 
 class Vibecraft < Formula
   desc "Agent-native CLI for the VibeCraft computer"
   homepage "https://www.vibecraft.so"
-  version "v0.70.25"
+  version "v0.70.26"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
       url "https://www.vibecraft.so/install/vibecraft-darwin-arm64"
-      sha256 "8ef647ba90f317f44260b79217cc132ad897df6a42eac8a9af1305815a8dc860"
+      sha256 "364728a2cc06113b0ed877888acd2f9c5a2ee00818b16551246e7d7a6c58c096"
     end
     on_intel do
       url "https://www.vibecraft.so/install/vibecraft-darwin-amd64"
-      sha256 "0e6a9bd68994ba0ffc0df8b1e042ea536d1ba27c1b0b03d79eb479ed78dbb7fe"
+      sha256 "032382f69f2c51a3d1c3d468cd2bef641726e7e1793ff5c26be4fb79e2e45eca"
     end
   end
 
   on_linux do
     on_arm do
       url "https://www.vibecraft.so/install/vibecraft-linux-arm64"
-      sha256 "e6fc37c2da3d000967ef11b08e60a748b2155987d1ef9f9604adba418dcbd6f0"
+      sha256 "b98f1497ce36511903054a78f0022a0b3edb9c8e381ddec40b363934a3166cb2"
     end
     on_intel do
       url "https://www.vibecraft.so/install/vibecraft-linux-amd64"
-      sha256 "34565f693d1cc5ff06f2ed3dcb49974e88ac890bae135471f0662c61d90879ba"
+      sha256 "b46764a5cfc88a1b5fcc35a66f4ab5e4631b4086e2402179c4c84583dc7e1e9d"
     end
   end
 
