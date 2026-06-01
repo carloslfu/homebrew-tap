@@ -1,0 +1,86 @@
+name: Sync formulae
+
+# Keeps this tap's formulae pointed at the latest published releases of
+# computer.md (vibecraft) and db.md (dbmd) — automatically, with NO
+# cross-repo token. This repo's own GITHUB_TOKEN commits to itself; the
+# upstream releases + render templates are read unauthenticated from the
+# public source repos. Runs on a schedule and on demand (Run workflow).
+on:
+  schedule:
+    - cron: "0 */6 * * *"   # every 6 hours
+  workflow_dispatch:          # manual / instant post-release sync
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Render vibecraft.rb from computer.md's latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag=$(gh release view --repo carloslfu/computer.md --json tagName -q .tagName)
+          echo "computer.md latest release: $tag"
+          curl -fsSL -o /tmp/manifest.json \
+            "https://github.com/carloslfu/computer.md/releases/download/${tag}/manifest.json"
+          curl -fsSL -o /tmp/render.sh \
+            "https://raw.githubusercontent.com/carloslfu/computer.md/main/HomebrewFormula/render.sh"
+          curl -fsSL -o /tmp/vibecraft.rb.template \
+            "https://raw.githubusercontent.com/carloslfu/computer.md/main/HomebrewFormula/vibecraft.rb.template"
+          # render.sh reads its template from "$(dirname "$0")/vibecraft.rb.template"
+          bash /tmp/render.sh "$tag" /tmp/manifest.json > Formula/vibecraft.rb
+
+      - name: Render dbmd.rb from db.md's latest release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          tag=$(gh release view --repo carloslfu/db.md --json tagName -q .tagName)
+          ver="${tag#v}"
+          echo "db.md latest release: $tag (version $ver)"
+          curl -fsSL -o /tmp/SHA256SUMS \
+            "https://github.com/carloslfu/db.md/releases/download/${tag}/SHA256SUMS"
+          curl -fsSL -o /tmp/dbmd.rb.template \
+            "https://raw.githubusercontent.com/carloslfu/db.md/main/HomebrewFormula/dbmd.rb.template"
+          # Each target filename is unique, so a plain substring grep is unambiguous.
+          DA=$(grep "dbmd-${ver}-darwin-aarch64.tar.gz"   /tmp/SHA256SUMS | awk '{print $1}')
+          DX=$(grep "dbmd-${ver}-darwin-x86_64.tar.gz"    /tmp/SHA256SUMS | awk '{print $1}')
+          LA=$(grep "dbmd-${ver}-linux-aarch64-musl.tar.gz" /tmp/SHA256SUMS | awk '{print $1}')
+          LX=$(grep "dbmd-${ver}-linux-x86_64-musl.tar.gz"  /tmp/SHA256SUMS | awk '{print $1}')
+          for v in "$DA" "$DX" "$LA" "$LX"; do
+            [ -n "$v" ] || { echo "::error::missing a dbmd sha256 in SHA256SUMS"; exit 1; }
+          done
+          sed -e "s/__VERSION__/${ver}/g" \
+              -e "s/__SHA256_DARWIN_AARCH64__/${DA}/g" \
+              -e "s/__SHA256_DARWIN_X86_64__/${DX}/g" \
+              -e "s/__SHA256_LINUX_AARCH64_MUSL__/${LA}/g" \
+              -e "s/__SHA256_LINUX_X86_64_MUSL__/${LX}/g" \
+              /tmp/dbmd.rb.template > Formula/dbmd.rb
+
+      - name: Sanity check (no unsubstituted placeholders)
+        run: |
+          set -euo pipefail
+          if grep -REn '\{\{|__[A-Z0-9_]+__' Formula/; then
+            echo "::error::unsubstituted placeholder left in a formula"; exit 1
+          fi
+          echo "Rendered versions:"
+          grep -E '^[[:space:]]*version ' Formula/vibecraft.rb Formula/dbmd.rb
+
+      - name: Commit if changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Formula/; then
+            echo "Formulae already current — nothing to commit."
+            exit 0
+          fi
+          git config user.name  "tap-sync-bot"
+          git config user.email "tap-sync@users.noreply.github.com"
+          git add Formula/vibecraft.rb Formula/dbmd.rb
+          git commit -m "sync: update formulae to latest computer.md + db.md releases"
+          git push
+          echo "Formulae updated and pushed."
