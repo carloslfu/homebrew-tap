@@ -21,7 +21,7 @@ class Dbmd < Formula
   desc "Command-line tool for db.md — the open database in plain files"
   homepage "https://github.com/carloslfu/db.md"
   license "Apache-2.0"
-  version "0.2.4"
+  version "0.2.3"
 
   BASE = "https://github.com/carloslfu/db.md/releases/download/v0.2.4".freeze
 
