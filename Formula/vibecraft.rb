@@ -28,7 +28,7 @@
 class Vibecraft < Formula
   desc "Agent-native CLI for the VibeCraft computer"
   homepage "https://www.vibecraft.so"
-  version "v0.71.4"
+  version "v0.71.5"
   license "Apache-2.0"
 
   on_macos do
