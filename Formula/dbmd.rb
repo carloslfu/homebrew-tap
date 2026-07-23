@@ -8,7 +8,7 @@
 #   brew install carloslfu/tap/dbmd
 #
 # The release pipeline (.github/workflows/release.yml) renders this template
-# per release tag, substituting 0.7.2 + the per-target sha256 values from
+# per release tag, substituting 0.8.0 + the per-target sha256 values from
 # the release's SHA256SUMS manifest. Asset names match the release tarballs
 # exactly: dbmd-<version>-<target>.tar.gz, downloaded from the GitHub Release on
 # carloslfu/db.md. Each tarball stages the binary + NOTICE + THIRD_PARTY_NOTICES
@@ -21,29 +21,29 @@ class Dbmd < Formula
   desc "Command-line tool for db.md — the open database in plain files"
   homepage "https://github.com/carloslfu/db.md"
   license "Apache-2.0"
-  version "0.7.2"
+  version "0.8.0"
 
-  BASE = "https://github.com/carloslfu/db.md/releases/download/v0.7.2".freeze
+  BASE = "https://github.com/carloslfu/db.md/releases/download/v0.8.0".freeze
 
   on_macos do
     on_arm do
-      url "#{BASE}/dbmd-0.7.2-darwin-aarch64.tar.gz"
-      sha256 "2b51ded0abb30a3421d6646056ae7ce31a9252ad4164be1b9381fd7a7f28e7fa"
+      url "#{BASE}/dbmd-0.8.0-darwin-aarch64.tar.gz"
+      sha256 "0615e27f5455289b865f942736fdd3c227d4245b9964c285eb4b7cc007533d13"
     end
     on_intel do
-      url "#{BASE}/dbmd-0.7.2-darwin-x86_64.tar.gz"
-      sha256 "9f6c036ac86fb156165c780b912f8cd04bbba635eff3ff629d6e21852468e29e"
+      url "#{BASE}/dbmd-0.8.0-darwin-x86_64.tar.gz"
+      sha256 "31f31e6c80bb9bf3924b18f00f14b796f09be6d62d12b3cb63e1daf05ae28935"
     end
   end
 
   on_linux do
     on_arm do
-      url "#{BASE}/dbmd-0.7.2-linux-aarch64-musl.tar.gz"
-      sha256 "da8425863446126749d692dc04b686130bd437ee13a3075fc43d2e4775874917"
+      url "#{BASE}/dbmd-0.8.0-linux-aarch64-musl.tar.gz"
+      sha256 "2cffd965b854d8e60e5013ac083b6e29844adc511dadd356e701a6e4c8c2bd54"
     end
     on_intel do
-      url "#{BASE}/dbmd-0.7.2-linux-x86_64-musl.tar.gz"
-      sha256 "45d738f7229fec97b37977f3269acd226628e3de42b74bcb4bce62ea85df5756"
+      url "#{BASE}/dbmd-0.8.0-linux-x86_64-musl.tar.gz"
+      sha256 "41b2c33963921e1482125d55e534180ea4b56aab6fdc16354e3461cd1522a62a"
     end
   end
 
