@@ -8,7 +8,7 @@
 #   brew install carloslfu/tap/dbmd
 #
 # The release pipeline (.github/workflows/release.yml) renders this template
-# per release tag, substituting 0.8.12 + the per-target sha256 values from
+# per release tag, substituting 0.8.13 + the per-target sha256 values from
 # the release's SHA256SUMS manifest. Asset names match the release tarballs
 # exactly: dbmd-<version>-<target>.tar.gz, downloaded from the GitHub Release on
 # carloslfu/db.md. Each tarball stages the binary + NOTICE + THIRD_PARTY_NOTICES
@@ -21,29 +21,29 @@ class Dbmd < Formula
   desc "Command-line tool for db.md — the open database in plain files"
   homepage "https://github.com/carloslfu/db.md"
   license "Apache-2.0"
-  version "0.8.12"
+  version "0.8.13"
 
-  BASE = "https://github.com/carloslfu/db.md/releases/download/v0.8.12".freeze
+  BASE = "https://github.com/carloslfu/db.md/releases/download/v0.8.13".freeze
 
   on_macos do
     on_arm do
-      url "#{BASE}/dbmd-0.8.12-darwin-aarch64.tar.gz"
-      sha256 "29acc9090bb418bbbf9524aa602ebf15df7eb1d354176596a0d2f2083f99b037"
+      url "#{BASE}/dbmd-0.8.13-darwin-aarch64.tar.gz"
+      sha256 "e1078112521f51d936ceb82587c3669e22d9958486219a1ed742ddf9fd38affd"
     end
     on_intel do
-      url "#{BASE}/dbmd-0.8.12-darwin-x86_64.tar.gz"
-      sha256 "074eb1066881a0b5565b4dd44d82564b01aca9ac38cec3e2112d1ce4bf8359b7"
+      url "#{BASE}/dbmd-0.8.13-darwin-x86_64.tar.gz"
+      sha256 "d4bccaf39b7c25036743dd4512316318ec4e5eb334cdfd07ac04495fcfbcbf13"
     end
   end
 
   on_linux do
     on_arm do
-      url "#{BASE}/dbmd-0.8.12-linux-aarch64-musl.tar.gz"
-      sha256 "8b92a4e0b2281e4f8028f76e42f11b62f17b8611d9ebceb7253d6cc3bf98185a"
+      url "#{BASE}/dbmd-0.8.13-linux-aarch64-musl.tar.gz"
+      sha256 "376570714500b78363ec42963b6343d8bea36b56354060b2abe881f0f8c62d19"
     end
     on_intel do
-      url "#{BASE}/dbmd-0.8.12-linux-x86_64-musl.tar.gz"
-      sha256 "751bc5fd1ce7cee58609363a7c478799e1b773d95683b3b29f165b6dee26b5e3"
+      url "#{BASE}/dbmd-0.8.13-linux-x86_64-musl.tar.gz"
+      sha256 "a942872f0e151f7753a7e71d6edc9bda0b855875848a0d1cd342b04873b7ee6c"
     end
   end
 
