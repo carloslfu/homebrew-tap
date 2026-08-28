@@ -8,7 +8,7 @@
 #   brew install carloslfu/tap/dbmd
 #
 # The release pipeline (.github/workflows/release.yml) renders this template
-# per release tag, substituting 0.8.39 + the per-target sha256 values from
+# per release tag, substituting 0.9.0 + the per-target sha256 values from
 # the release's SHA256SUMS manifest. Asset names match the release tarballs
 # exactly: dbmd-<version>-<target>.tar.gz, downloaded from the GitHub Release on
 # carloslfu/db.md. Each tarball stages the binary + NOTICE + THIRD_PARTY_NOTICES
@@ -21,29 +21,29 @@ class Dbmd < Formula
   desc "Command-line tool for db.md — the open database in plain files"
   homepage "https://github.com/carloslfu/db.md"
   license "Apache-2.0"
-  version "0.8.39"
+  version "0.9.0"
 
-  BASE = "https://github.com/carloslfu/db.md/releases/download/v0.8.39".freeze
+  BASE = "https://github.com/carloslfu/db.md/releases/download/v0.9.0".freeze
 
   on_macos do
     on_arm do
-      url "#{BASE}/dbmd-0.8.39-darwin-aarch64.tar.gz"
-      sha256 "daecb9f6e59bbbea1bb783ce2d621b157774a5b56b40fa8325451184cabf2b22"
+      url "#{BASE}/dbmd-0.9.0-darwin-aarch64.tar.gz"
+      sha256 "60a3361ad20a0940d632d2d498e45632b16d0e9e1d4d0f78cd092f86394801ff"
     end
     on_intel do
-      url "#{BASE}/dbmd-0.8.39-darwin-x86_64.tar.gz"
-      sha256 "a2af42f8ed773226f758fa186b5ad69488de01ba09ef206e0a028fab98aeed89"
+      url "#{BASE}/dbmd-0.9.0-darwin-x86_64.tar.gz"
+      sha256 "980742613e91166efa2bb1043d71cc31d707e30455df857b9ad3dc1a72eb7c39"
     end
   end
 
   on_linux do
     on_arm do
-      url "#{BASE}/dbmd-0.8.39-linux-aarch64-musl.tar.gz"
-      sha256 "a78fb9de9b9876b42868c016fac647e20c263e253bbea674e35b0aedb4219ca7"
+      url "#{BASE}/dbmd-0.9.0-linux-aarch64-musl.tar.gz"
+      sha256 "c34726fa063eda64102f6e7c7c393dd099ff8d2cf5b61bd7a9cafdf5139a0581"
     end
     on_intel do
-      url "#{BASE}/dbmd-0.8.39-linux-x86_64-musl.tar.gz"
-      sha256 "5a68e3176de0f284b04dd2af821abb0b5227d408faa5108fea84326c000f486e"
+      url "#{BASE}/dbmd-0.9.0-linux-x86_64-musl.tar.gz"
+      sha256 "8df146cf14464dfc0f760d7aef1982e211ca701e847b192620198f134c77b10e"
     end
   end
 
